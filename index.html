@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="startBtn">Start</button>
+    <div class="love-letter" id="letter">
+        <h2>❤️Hey Girl,❤️</h2>
+        <p class="message" id="message">You are my sunshine, my heart beats for you, forever and always, you are my pookie❤️😘</p>
+    </div>
+    <audio id="music" class="music" loop autoplay>
+        <source src="city.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- GIF of teddy bear giving a letter -->
+    <img id="teddy" src="https://media.giphy.com/media/xmFlnkXBnk83MrEdAC/giphy.gif?cid=790b7611rqthei6eqamduvx8lpew4cojs1k82irxipn6qjg5&ep=v1_stickers_search&rid=giphy.gif&ct=s" alt="Teddy with Letter" />
+
+    <script>
+        document.getElementById("startBtn").addEventListener("click", function() {
+            // Start playing music
+            const music = document.getElementById("music");
+            music.play();
+
+            // Show the teddy GIF giving a letter with blushing
+            const teddy = document.getElementById("teddy");
+            teddy.style.display = "block";
+
+            // After the teddy GIF appears, reveal the letter
+            setTimeout(function() {
+                const letter = document.getElementById("letter");
+                letter.style.display = "block";
+                setTimeout(function() {
+                    letter.style.opacity = "1";
+                    letter.style.transform = "translateY(0)";
+                }, 100);
+
+                // Add message typing animation after letter opening
+                setTimeout(function() {
+                    document.getElementById("message").style.opacity = "1";
+                }, 1000);
+
+                // Create hearts, ribbons, and flowers animations
+                createAnimations();
+
+            }, 2000);
+
+            // Hide the start button after click
+            document.getElementById("startBtn").style.display = "none";
+        });
+
+        function createAnimations() {
+            // Create hearts
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("span");
+                heart.classList.add("heart");
+                heart.innerHTML = "&#10084;"; // Heart symbol
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 1 + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 1500);
+            }
+
+            // Create ribbons
+            for (let i = 0; i < 5; i++) {
+                let ribbon = document.createElement("span");
+                ribbon.classList.add("ribbon");
+                ribbon.innerHTML = "🎀"; // Ribbon symbol
+                ribbon.style.left = Math.random() * 100 + "vw";
+                ribbon.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(ribbon);
+
+                setTimeout(() => {
+                    ribbon.remove();
+                }, 2000);
+            }
+
+            // Create flowers (roses)
+            for (let i = 0; i < 5; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("flower");
+                flower.innerHTML = "<img src='https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2gwN3R3ZXE5azVxMjVxOWx2YjN6cHJ4ZHl1NDhuaDZiazFyYzJwMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dCC08tNFiW21QhWhRt/giphy.gif' alt='Rose'>"; // Flower GIF (Make sure you have the correct path)
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
